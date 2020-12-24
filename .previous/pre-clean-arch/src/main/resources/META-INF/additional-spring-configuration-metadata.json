@@ -1,0 +1,29 @@
+{
+  "properties": [
+    {
+      "name": "vault.uri",
+      "type": "java.lang.String",
+      "description": "Description for vault.uri."
+    },
+    {
+      "name": "vault.authentication",
+      "type": "java.lang.String",
+      "description": "Description for vault.authentication."
+    },
+    {
+      "name": "vault.path",
+      "type": "java.lang.String",
+      "description": "Description for vault.path."
+    },
+    {
+      "name": "vault.app-role.role-id",
+      "type": "java.lang.String",
+      "description": "Description for vault.app-role.role-id."
+    },
+    {
+      "name": "vault.app-role.secret-id",
+      "type": "java.lang.String",
+      "description": "Description for vault.app-role.secret-id."
+    }
+  ]
+}

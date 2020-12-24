@@ -1,0 +1,9 @@
+package com.pebblepost.cpp_sync.service.filesystem;
+
+import java.io.IOException;
+import org.springframework.stereotype.Service;
+
+@Service
+public interface FileSystemService {
+  void writeRemoteFile() throws IOException;
+}

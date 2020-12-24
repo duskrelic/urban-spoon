@@ -1,0 +1,12 @@
+apply plugin: "java-library"
+
+dependencies {
+    api(
+            "org.glassfish:jakarta.el:3.0.3",
+            "org.hibernate.validator:hibernate-validator:6.1.6.Final",
+            "org.javamoney:moneta:1.4.2",
+    )
+    testImplementation(
+            "org.mockito:mockito-junit-jupiter:3.6.0",
+    )
+}

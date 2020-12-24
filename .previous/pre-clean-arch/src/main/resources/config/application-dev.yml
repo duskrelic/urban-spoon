@@ -1,0 +1,15 @@
+spring:
+  devtools:
+    livereload:
+      enabled: false
+  datasource:
+    schema: classpath:/db/init-ddl.sql
+    data: classpath:/db/init-dml.sql
+    initialization-mode: always
+
+logging:
+  level:
+    root: debug
+
+files:
+  src-dir: sample_files

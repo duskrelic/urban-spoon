@@ -1,0 +1,4 @@
+rootProject.name = "etl-batch"
+
+include("domain")
+project(":domain").projectDir = file("modules/domain")

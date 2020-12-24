@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: cpp-sync
+  output:
+    ansi:
+      enabled: always
+  datasource:
+    initialization-mode: never
+
+logging:
+  level:
+    root: info
+
+vault:
+  uri: ${VAULT_ADDR}
+  path: ${VAULT_SECRET_PATH}
+  authentication: APPROLE
+  app-role:
+    role-id: ${VAULT_APP_ROLE_ROLE_ID}
+    secret-id: ${VAULT_APP_ROLE_SECRET_ID}

@@ -1,0 +1,76 @@
+plugins {
+    id "java"
+    id "java-library"
+    id "jacoco"
+    id "io.freefair.lombok" version "5.2.1"
+}
+
+allprojects {
+
+    apply plugin: "java"
+    apply plugin: "jacoco"
+    apply plugin: "io.freefair.lombok"
+
+    group = "com.pebblepost"
+    version = "1.0.0-SNAPSHOT"
+
+    repositories {
+        jcenter()
+    }
+
+    java {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    lombok {
+        version = project.property("org.projectlombok.version")
+        generateLombokConfig.enabled = false
+    }
+
+
+    if (hasProperty("buildScan")) {
+        buildScan {
+            termsOfServiceUrl = "https://gradle.com/terms-of-service"
+            termsOfServiceAgree = "yes"
+        }
+    }
+
+}
+
+subprojects {
+
+    dependencies {
+        implementation("ch.qos.logback:logback-classic:1.2.3")
+        testImplementation(
+                "org.junit.jupiter:junit-jupiter-api:${project.property("org.junit.jupiter.version")}",
+                "org.junit.jupiter:junit-jupiter-engine:${project.property("org.junit.jupiter.version")}",
+                "org.junit.platform:junit-platform-engine:${project.property("org.junit.platform.version")}",
+                "org.assertj:assertj-core:3.18.0"
+        )
+    }
+
+    java {
+        modularity.inferModulePath = true
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+
+    jacocoTestReport {
+        dependsOn test
+        reports {
+            xml.enabled = true
+        }
+    }
+
+}
+
+sourceSets {
+    main {
+        resources {
+            srcDirs += "${rootProject.projectDir}/modules/resources"
+        }
+    }
+}

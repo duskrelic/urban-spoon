@@ -1,0 +1,25 @@
+version: '2.1'
+services:
+
+  postgres:
+    image: postgres:10-alpine
+    environment:
+      POSTGRES_USER: ${DEV_PASSPHRASE}
+      POSTGRES_PASSWORD: ${DEV_PASSPHRASE}
+    ports:
+      - 5432:5432
+    restart: always
+    volumes:
+      - ${PROJECT_DATA_HOME}/postgres/data:/var/lib/postgresql/data/
+
+  vault:
+    image: vault:1.0.3
+    environment:
+      VAULT_ADDR: ${VAULT_ADDR}
+      VAULT_DEV_ROOT_TOKEN_ID: ${DEV_PASSPHRASE}
+      SKIP_SETCAP: 1
+    ports:
+      - 8200:8200
+    volumes:
+      - ${PROJECT_CONFIG_HOME}/vault/config:/vault/config
+      - ${TEMP_HOME:-$TMPDIR}/vault/approle:/tmp/vault/approle

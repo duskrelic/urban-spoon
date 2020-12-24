@@ -1,0 +1,54 @@
+package com.pebblepost.cpp_sync.service.filesystem;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.pebblepost.cpp_sync.config.FileSystemConfig;
+import java.io.File;
+import java.io.IOException;
+import javax.annotation.PostConstruct;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class LocalFileSystemServiceTest {
+
+  @Autowired
+  private FileSystemConfig fileSystemConfig;
+
+  @Autowired
+  private LocalFileSystemService localFileSystemService;
+
+  private File srcFile;
+  private File destFile;
+
+  @PostConstruct
+  private void initFiles() {
+    srcFile = new File(fileSystemConfig.getSrcPathStr());
+    destFile = new File(fileSystemConfig.getDestPathStr());
+  }
+
+  @BeforeEach
+  void setUp() {
+    if (destFile.exists()) {
+      assertTrue(destFile.delete());
+    }
+  }
+
+  @AfterEach
+  void tearDown() {
+    assertTrue(destFile.delete());
+  }
+
+  @Test
+  void writeRemoteFile_srcExistsDestDoesNotExist_bothFilesExist() throws IOException {
+    assertTrue(srcFile.exists());
+    assertFalse(destFile.exists());
+    localFileSystemService.writeRemoteFile();
+    assertTrue(srcFile.exists());
+    assertTrue(destFile.exists());
+  }
+}
