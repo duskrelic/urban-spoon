@@ -40,7 +40,8 @@ jobs:
         uses: paambaati/codeclimate-action@v2.7.5
         env:
           CC_TEST_REPORTER_ID: ${{secrets.CODE_CLIMATE_TEST_REPORTER_ID}}
-          JACOCO_SOURCE_PATH: /build/classes/java/main
+          JACOCO_SOURCE_PATH: |
+            **/build/classes/java/main
         with:
           coverageCommand: ./gradlew clean build jacocoTestReport
           coverageLocations: |
