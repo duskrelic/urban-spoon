@@ -45,4 +45,5 @@ jobs:
           coverageCommand: ./gradlew jacocoTestReport
           coverageLocations: |
             "**/jacocoTestReport.xml":jacoco
+          debug: true
 
