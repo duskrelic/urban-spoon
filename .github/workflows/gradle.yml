@@ -41,7 +41,7 @@ jobs:
         env:
           CC_TEST_REPORTER_ID: ${{secrets.CODE_CLIMATE_TEST_REPORTER_ID}}
           JACOCO_SOURCE_PATH: |
-            "${{github.workspace}}modules/domain/src/main/java"
+            "${{github.workspace}}/modules/domain/src/main/java"
         with:
           coverageCommand: ./gradlew jacocoTestReport
           coverageLocations: |
