@@ -42,7 +42,7 @@ jobs:
           CC_TEST_REPORTER_ID: ${{secrets.CODE_CLIMATE_TEST_REPORTER_ID}}
           JACOCO_SOURCE_PATH: /build/classes/java/main
         with:
-          coverageCommand: ./gradlew jacocoTestReport
+          coverageCommand: ./gradlew clean build jacocoTestReport
           coverageLocations: |
             **/jacocoTestReport.xml:jacoco
           debug: true
